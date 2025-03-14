@@ -1,16 +1,266 @@
 ---
-
+// src/pages/index.astro
+const fullName = "Abishan Selvaratnam";
+const letters = fullName.split("");
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>Abishan Selvaratnam</title>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+    </head>
+
+    <body>
+        <main>
+            <h1 class="name-animation">
+                {
+                    letters.map((char, index) => (
+                        <span class="letter" data-index={index}>
+                            {char === " " ? "\u00A0" : char}
+                        </span>
+                    ))
+                }
+            </h1>
+
+            <div class="social-links">
+                <a
+                    href="https://www.linkedin.com/in/abishan-selva"
+                    target="_blank"
+                    aria-label="LinkedIn"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path
+                            d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                        ></path>
+                        <rect x="2" y="9" width="4" height="12"></rect>
+                        <circle cx="4" cy="4" r="2"></circle>
+                    </svg>
+                </a>
+
+                <a
+                    href="https://instagram.com/abishan.selva"
+                    target="_blank"
+                    aria-label="Instagram"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"
+                        ></rect>
+                        <path
+                            d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                        ></path>
+                        <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                    </svg>
+                </a>
+
+                <a
+                    href="https://github.com/your-username"
+                    target="_blank"
+                    aria-label="GitHub"
+                >
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <path
+                            d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+                        ></path>
+                    </svg>
+                </a>
+            </div>
+        </main>
+
+        <script>
+            // @ts-nocheck
+            import anime from "animejs/lib/anime.es.js";
+
+            document.addEventListener("DOMContentLoaded", () => {
+                // Add subtle hover effects on the name
+                const nameElement = document.querySelector(".name-animation");
+
+                if (nameElement) {
+                    nameElement.addEventListener("mouseenter", () => {
+                        anime({
+                            targets: ".letter",
+                            translateY: function () {
+                                return anime.random(-5, 5);
+                            },
+                            translateX: function () {
+                                return anime.random(-3, 3);
+                            },
+                            scale: function () {
+                                return 0.95 + Math.random() * 0.1;
+                            },
+                            rotate: function () {
+                                return anime.random(-5, 5);
+                            },
+                            easing: "easeOutElastic(1, .6)",
+                            duration: 800,
+                            delay: function (el, i) {
+                                return 10 * i;
+                            },
+                        });
+                    });
+
+                    nameElement.addEventListener("mouseleave", () => {
+                        anime({
+                            targets: ".letter",
+                            translateX: 0,
+                            translateY: 0,
+                            scale: 1,
+                            rotate: 0,
+                            easing: "easeOutElastic(1, .6)",
+                            duration: 800,
+                            delay: function (el, i) {
+                                return 10 * i;
+                            },
+                        });
+                    });
+                }
+            });
+        </script>
+    </body>
 </html>
+
+<style>
+    :root {
+        --text-color: #ffffff;
+        --transition: all 0.3s ease;
+        --bg-color-1: #11694e;
+        --bg-color-2: #48bf91;
+        --bg-color-3: #8fd9a8;
+        --bg-color-4: #15997a;
+    }
+
+    html,
+    body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    body {
+        background-image: linear-gradient(
+            135deg,
+            var(--bg-color-1),
+            var(--bg-color-2),
+            var(--bg-color-3),
+            var(--bg-color-4)
+        );
+        background-size: 400% 400%;
+        animation: gradient 15s ease infinite;
+        font-family: "Playfair Display", serif;
+        color: var(--text-color);
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    @keyframes gradient {
+        0% {
+            background-position: 0% 50%;
+        }
+        50% {
+            background-position: 100% 50%;
+        }
+        100% {
+            background-position: 0% 50%;
+        }
+    }
+
+    main {
+        text-align: center;
+        padding: 2rem;
+    }
+
+    h1 {
+        font-size: 5rem;
+        display: inline-block;
+        line-height: 1.2;
+        margin-bottom: 2rem;
+        position: relative;
+    }
+
+    .letter {
+        display: inline-block;
+        will-change: transform;
+        backface-visibility: hidden;
+        transform-style: preserve-3d;
+    }
+
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 2.5rem;
+        margin-top: 3rem;
+    }
+
+    .social-links a {
+        color: var(--text-color);
+        opacity: 0.8;
+        transition: var(--transition);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .social-links a:hover {
+        opacity: 1;
+        transform: translateY(-5px) scale(1.1);
+    }
+
+    .name-animation {
+        cursor: default;
+    }
+
+    @media (max-width: 768px) {
+        h1 {
+            font-size: 3.5rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        h1 {
+            font-size: 2.5rem;
+        }
+        .social-links {
+            gap: 1.5rem;
+        }
+    }
+</style>
