@@ -11,6 +11,12 @@ const letters = fullName.split("");
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
         <title>Abishan Selvaratnam</title>
+        <meta
+            name="description"
+            content="Abishan Selvaratnam - Personal Website"
+        />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
             href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap"
             rel="stylesheet"
@@ -80,7 +86,7 @@ const letters = fullName.split("");
                 </a>
 
                 <a
-                    href="https://github.com/your-username"
+                    href="https://github.com/abishan-selva"
                     target="_blank"
                     aria-label="GitHub"
                 >
@@ -104,8 +110,7 @@ const letters = fullName.split("");
         </main>
 
         <script>
-            // @ts-nocheck
-            import anime from "/src/anime.js";
+            import anime from "animejs";
 
             document.addEventListener("DOMContentLoaded", () => {
                 // Add subtle hover effects on the name
